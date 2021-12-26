@@ -1,0 +1,10 @@
+{
+  "name": "mycontacts-api",
+  "version": "1.0.0",
+  "description": "API to store contacts of the project.",
+  "main": "src/index.js",
+  "repository": "github.com/ItaloCovas/my-contacts-api",
+  "author": "ItaloCovas",
+  "license": "MIT",
+  "private": false
+}
