@@ -20,8 +20,9 @@ let contacts = [
 ];
 
 class ContactsRepository {
-  async findAll() {
-    const rows = await db.query('SELECT * FROM contacts');
+  async findAll(orderBy = 'ASC') {
+    const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC'; // Prevenir SQL INJECTION
+    const rows = await db.query(`SELECT * FROM contacts ORDER BY name ${direction}`);
     return rows;
   }
 
@@ -45,7 +46,7 @@ class ContactsRepository {
   async create({
     name, email, phone, category_id,
   }) {
-    // Os símbolos de dolar são os Bindings do Postgres (evitar SQL Injection)
+    // Os símbolos de dolar são os Bindings do Postgres (previnir SQL Injection)
     const [row] = await db.query(`
       INSERT INTO contacts(name, email, phone, category_id)
       VALUES($1, $2, $3, $4)
